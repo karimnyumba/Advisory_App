@@ -12,7 +12,9 @@ class App extends React.Component {
     fetchAdvice = () => {
         axios.get('https://api.adviceslip.com/advice')
         .then((response) => {
-            console.log(response);
+            const { advice } = response.data.slip;
+            console.log(advice);
+            this.setState({ advice: advice });
         })
         .catch((error) => {
             console.log(error);
@@ -20,9 +22,10 @@ class App extends React.Component {
     }
 
     render() {
+        const { advice } = this.state;
         return (
             <div>
-                <h1>Hello, world!</h1>
+                <h1>{advice}</h1>
             </div>
         )
     }
